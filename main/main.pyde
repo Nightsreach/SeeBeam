@@ -6,7 +6,7 @@ from ReadFile import readFile
 listOfSections = {}
 downScaleResolution = 5
 prismThickness = 25
-fileName = "sile.csv"
+fileName = "file1.csv"
 
 def calcBeamLength(lstPlanes):
     beamLength = 0
@@ -40,7 +40,7 @@ def setUpScene():
     
 def setup():
     global scene, offset
-    size(600,600,P3D)
+    size(1200,1200,P3D)
     scene = Scene(this)
     
     listOfPlanes = readFile(fileName)    
