@@ -33,14 +33,17 @@ def setUpScene():
     scene.setAxesVisualHint(False)
     
     if scene.is3D():
-        scene.setCameraType(Camera.Type.ORTHOGRAPHIC)
+        scene.setCameraType(Camera.Type.PERSPECTIVE)
    
-    scene.setRadius(150)
-    scene.showAll()   
+    scene.setRadius(400)
+    scene.showAll()
     
 def setup():
     global scene, offset
-    size(1200,1200,P3D)
+    
+    #Manually set responsive display size in the dirtiest way. Taken 90% of height to account for top/bottom bars), I'll find a better way later
+    size(displayWidth,int(displayHeight*0.9),P3D)
+    
     scene = Scene(this)
     
     listOfPlanes = readFile(fileName)    
