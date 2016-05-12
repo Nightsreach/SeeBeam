@@ -11,8 +11,6 @@ prismThickness = 25
 fileName = "file1.csv"
 drawRect = False
 
-
-
 class ButtonListener(ControlListener):
 
     def controlEvent(self, e):   
@@ -38,15 +36,14 @@ def createSections(listOfPlanes):
         #listOfSections[str(counter)] = ThreeDimensionalPlane(item[0]/downScaleResolution, item[1]/downScaleResolution, item[2]/downScaleResolution, item[3]/downScaleResolution, [255,0,0]).getPlane()
         listOfSections[str(counter)] = RectangularPrism(item[0]/downScaleResolution, item[1]/downScaleResolution, item[2]/downScaleResolution, item[3]/downScaleResolution, prismThickness/downScaleResolution, [255,0,0]).getPrism()
         counter += 1
+
     
 def drawSections(offset):
     for key in listOfSections:
         shape(listOfSections[key], offset/downScaleResolution, 0)
    
 
-
-def gui():
-    
+def gui():    
     menuButton = cp5.addButton("Menu",10,width - 100,20,80,20).setId(1)
     cp5.setAutoDraw(False)
     cp5.getController("Menu").addListener(ButtonListener())
@@ -63,7 +60,7 @@ def sceneSetup():
     cameraZ = ((height/2.0) / tan(PI*60.0/360.0))
     perspective(PI/3.0, scene.camera().aspectRatio(), cameraZ/10.0, cameraZ*10.0);
     
-    scene.setAxesVisualHint(True) 
+    scene.setAxesVisualHint(False) 
     scene.setGridVisualHint(False)
     scene.setRadius(400)
     camera()
@@ -89,10 +86,5 @@ def setup():
 def draw():
     background(140)
     drawSections(offset)
-<<<<<<< Updated upstream
-   #comment to see changes  
-=======
 
     sceneSetup()
-     
->>>>>>> Stashed changes
