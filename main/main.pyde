@@ -46,13 +46,19 @@ def gui():
             
 def sceneSetup():
     
-    scene.setAxesVisualHint(False) 
-    scene.setGridVisualHint(False)
-    scene.setRadius(400)
-    camera()
-    
-    cp5.draw()
-
+    hint(DISABLE_DEPTH_TEST) 
+     
+    currCameraMatrix = PMatrix3D(PGraphics.modelview) 
+    cameraZ = ((height/2.0) / tan(PI*60.0/360.0)) 
+    perspective(PI/3.0, scene.camera().aspectRatio(), cameraZ/10.0, cameraZ*10.0); 
+     
+    scene.setAxesVisualHint(False)  
+    scene.setGridVisualHint(False) 
+    scene.setRadius(400) 
+    camera() 
+     
+    cp5.draw() 
+    hint(ENABLE_DEPTH_TEST) 
     
 def setup():
     global scene, g3, cp5, currCameraMatrix, PGraphics, offset, e, menuButton
