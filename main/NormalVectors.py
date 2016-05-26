@@ -19,12 +19,12 @@ class NormalVector:
 class DirectNormalOut:
     def __init__(self, topLeftVertex, topRightVertex, bottomRightVertex, bottomLeftVertex):
         _normalVector = NormalVector(topLeftVertex, topRightVertex, bottomRightVertex, bottomLeftVertex).getNormal()
-        if (topLeftVertex.x + topRightVertex.x + bottomRightVertex.x + bottomLeftVertex.x) > 0:
-            _normalVector.x *= -1
         if (topLeftVertex.x + topRightVertex.x + bottomRightVertex.x + bottomLeftVertex.x) < 0:
             _normalVector.x *= -1
-        if (topLeftVertex.x + topRightVertex.x + bottomRightVertex.x + bottomLeftVertex.x) > 0:
-            _normalVector.x *= -1
+        if (topLeftVertex.y + topRightVertex.y + bottomRightVertex.y + bottomLeftVertex.y) < 0:
+            _normalVector.y *= -1
+        if (topLeftVertex.z + topRightVertex.z + bottomRightVertex.z + bottomLeftVertex.z) < 0:
+            _normalVector.z *= -1
             
         self._normal = _normalVector
     
