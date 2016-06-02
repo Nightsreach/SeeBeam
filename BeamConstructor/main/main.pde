@@ -4,11 +4,12 @@ import java.lang.*;
 
 ControlP5 cp5;
 CrossSection crossSectionShape;
-
+PGraphics canvas;
+  
 void setup()
 {
-  size(500, 500, P2D);  
-  
+  size(1600, 900, P2D);  
+  canvas = createGraphics(1300, 900, P2D);
   PFont font = createFont("arial",20);
   
   cp5 = new ControlP5(this);
@@ -27,17 +28,19 @@ void setup()
      .setSize(200, 50)
      .setId(2);
      
-  cp5.addTextfield("X COORD")
-     .setPosition(100,30)
-     .setSize(75,50)
+  cp5.addTextfield("Length")
+     .setPosition(width - 275,25)
+     .setSize(250,50)
      .setFont(font)
-     .setColor(color(255,255,255))
+     .setId(3)
+     .setColor(color(255,255,220))
      ;
      
-  cp5.addTextfield("Y COORD")
-     .setPosition(250,30)
-     .setSize(75,50)
+  cp5.addTextfield("Segments")
+     .setPosition(width - 275,130)
+     .setSize(250,50)
      .setFont(font)
+     .setId(4)
      .setColor(color(255,255,255))
      ;
      
@@ -46,6 +49,12 @@ void setup()
 void draw()
 {
   background(140); 
+  canvas.beginDraw();
+  canvas.background(102);
+  canvas.stroke(255);
+  canvas.line(canvas.width*0.5, canvas.height*0.5, mouseX, mouseY);
+  canvas.endDraw();
+  image(canvas, 0, 0); 
 }
 
 
