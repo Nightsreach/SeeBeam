@@ -18,7 +18,7 @@ void setup() {
   //will probably be switched up when we get fixed positioning UI values.
   xUnit = int(width * 0.025);
   yUnit = int(height * 0.025);
-  canvas = createGraphics(30*xUnit, height, P2D);
+  canvas = createGraphics(10*xUnit, height, P2D);
   
   cp5 = new ControlP5(this);
   
@@ -90,8 +90,11 @@ void draw() {
   canvas.beginDraw();
   canvas.background(102);
   canvas.stroke(255);
+  for (Node node : Nodes) {
+     node.display();
+  }
   canvas.endDraw();
-  image(canvas, 0, 0); 
+  image(canvas, 30*xUnit, 0); 
 }
 
 public void controlEvent(ControlEvent theEvent) {
@@ -111,8 +114,8 @@ public void controlEvent(ControlEvent theEvent) {
      break;
    case("Join Nodes"):
      //println("Beam Length: " + Integer.toString(Nodes.getLength()));
-     println("Nodes:\n" + crossSectionShape.getNodes());
+     //println("Nodes:\n" + crossSectionShape.getNodes());
      break;
  }
-  
+ 
 }

@@ -25,13 +25,13 @@ public class CrossSection
     return crossSectionNodes.get(index); 
   }
   
-  public String getNodes()
-  {
-    String nodeList = "";
-    for (int i = 0; i < crossSectionNodes.size(); i++)
-    {
-     nodeList += crossSectionNodes.get(i).ToString() + "\n";
-    }
-    return nodeList;
-  }
+  //public String getNodes()
+  //{
+  //  String nodeList = "";
+  //  for (int i = 0; i < crossSectionNodes.size(); i++)
+  //  {
+  //   nodeList += crossSectionNodes.get(i).ToString() + "\n";
+  //  }
+  //  return nodeList;
+  //}
 }

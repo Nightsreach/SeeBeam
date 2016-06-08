@@ -1,7 +1,5 @@
 public class Node
 {
-  public float x;
-  public float y;
   public Group container;
   public Textfield xInput;
   public Textfield yInput;
@@ -14,15 +12,13 @@ public class Node
       this.id = Nodes.get(Nodes.size()-1).id+1;
     else
       this.id = 1;
-    this.x = 0;
-    this.y = 0;
+    
     this.container = cp5.addGroup("Node "+Nodes.size())
       .setGroup("Right Sidebar")
       .setPosition(0,5*xUnit + (Nodes.size()*3*yUnit))
       .setWidth(10*xUnit)
       .hideBar();
       
-    println(Nodes.indexOf(this));  
     cp5.addLabel("Header "+id)
       .setGroup(this.container)
       .setText("Node "+id+":")
@@ -52,6 +48,7 @@ public class Node
       .setCaptionLabel("")
       .setPosition(3*xUnit,0)
       .setSize(2*xUnit,yUnit);
+      //.setInputFilter(ControlP5.FLOAT);
     
     cp5.addLabel("Y Label "+id)
       .setGroup(this.container)
@@ -65,6 +62,7 @@ public class Node
       .setCaptionLabel("")
       .setPosition(6*xUnit,0)
       .setSize(xUnit*2,yUnit);
+      //.setInputFilter(ControlP5.FLOAT);
       
     cp5.addButton("Remove "+id)
       .setCaptionLabel("-")
@@ -85,12 +83,32 @@ public class Node
     );
   }
   
-  public void SetPos() {
-    this.x = Float.parseFloat(xInput.getText());
+  void display() {
+    fill(0);
+    
+    Float x = 0.0;
+    Float y = 0.0;
+    
+    //Only parses value if verified
+    try {
+      x = Float.parseFloat(xInput.getText());
+    }
+    catch(NumberFormatException e) {}
+    
+    try {
+      y = Float.parseFloat(yInput.getText());
+    }
+    catch(NumberFormatException e) {}
+    //Set to center
+    ellipse(15*xUnit+x, 20*yUnit-y, 5, 5);
   }
   
-  public String ToString() {
-    return "X: " + Float.toString(this.x) + ", Y: " + Float.toString(this.y);
-  }
+  //public void SetPos() {
+  //  this.x = Float.parseFloat(xInput.getText());
+  //}
+  
+  //public String ToString() {
+  //  return "X: " + Float.toString(this.x) + ", Y: " + Float.toString(this.y);
+  //}
   
 }
