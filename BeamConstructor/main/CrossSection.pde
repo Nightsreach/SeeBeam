@@ -14,9 +14,9 @@ public class CrossSection
    return beamLength; 
   }
   
-  public void addNode(float x, float y)
+  public void addNode()
   {
-    thisNode = new Node(x,y);
+    thisNode = new Node();
     crossSectionNodes.add(thisNode);
   }
   
