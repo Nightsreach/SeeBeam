@@ -73,6 +73,13 @@ public class Node
       .setSize(yUnit,yUnit)
       .onClick(new CallbackListener() {
         public void controlEvent(CallbackEvent event) {
+          for(Node node : Nodes) { 
+              for (int j = 0; j < node.joins.size(); j++) {
+                if(Nodes.get(node.joins.get(j)).id == event.getController().getId()){
+                  node.joins.remove(j);
+                }
+              }
+          }
           boolean removed = false;
           int i = Nodes.size()-1;
           while(i >= 0 && !removed) {
