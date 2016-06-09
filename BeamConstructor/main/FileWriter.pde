@@ -1,13 +1,35 @@
 import java.lang.*;
 import java.io.*;
+String directory = "";
 
+
+public void setDirectory(String d){
+  directory =d;
+}
+
+void fileSelected(File selection) {
+   
+    if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    println(selection.getAbsolutePath() + "1");
+    setDirectory(selection.getAbsolutePath());
+  }
+}
+ 
 public void SaveNodesToFile(ArrayList<Node> nodes, String BeamLength)
 {
+  selectInput("Select a file to process:", "fileSelected");
+
   println(nodes);
   println(BeamLength);
     try
-    {
-        PrintWriter writer = new PrintWriter("C:/Projects/SeeBeam/file1.txt", "UTF-8");
+    { 
+      print(directory + "2");
+      while(directory == ""){
+      print(directory + "3");
+    }
+        PrintWriter writer = new PrintWriter(directory, "UTF-8");
         for (int i = 0; i < nodes.size(); i++) 
         {
             if (nodes.get(i).joins.size() > 0)

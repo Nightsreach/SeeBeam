@@ -6,7 +6,7 @@ from ReadFile import readFile
 listOfSections = {}
 downScaleResolution = 5
 prismThickness = 25
-fileName = "file1.csv"
+fileName = ""
 
 def calcBeamLength(lstPlanes):
     beamLength = 0
@@ -38,8 +38,20 @@ def setUpScene():
     scene.setRadius(400)
     scene.showAll()
     
+def fileSelected(selection):
+  if (selection == null):
+    println("Window was closed or the user hit cancel.")
+  else:
+    println("User selected " + selection.getAbsolutePath())
+    fileName = selection.getAbsolutePath()
+  
 def setup():
     global scene, offset
+    
+    
+    selectInput("Select a file to process:", "selection")
+    print(fileName +  "12#")
+
     
     #Manually set responsive display size in the dirtiest way. Taken 90% of height to account for top/bottom bars), I'll find a better way later
     size(displayWidth, int(displayHeight*0.9), P3D)
