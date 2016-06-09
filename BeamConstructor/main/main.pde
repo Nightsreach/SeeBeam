@@ -23,6 +23,7 @@ void setup() {
   yUnit = int(height * 0.025);
   canvas = createGraphics(10*xUnit, height, P2D);
   
+  
   cp5 = new ControlP5(this);
   
   //Could not figure out any better way of doing this,
@@ -99,6 +100,7 @@ void draw() {
   canvas.beginDraw();
   canvas.background(102);
   canvas.stroke(255);
+  
   for (Node node : Nodes) {
      node.display();
   }
@@ -106,11 +108,15 @@ void draw() {
   image(canvas, 30*xUnit, 0); 
 }
 
+
+
 public void controlEvent(ControlEvent theEvent) {
   
  switch (theEvent.getController().getName()) {
    case("Create Mesh"):
        SaveNodesToFile(Nodes, cp5.get(Textfield.class,"Length Field").getText());
+       
+       
        break;
    case("Create Node"):
      if(Nodes.size() < 9)
