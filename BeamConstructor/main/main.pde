@@ -6,8 +6,11 @@ ControlP5 cp5;
 CrossSection crossSectionShape;
 PGraphics canvas;
 ArrayList<Node> Nodes = new ArrayList<Node>();
+
+
 int xUnit;
 int yUnit;
+
 PFont arial;
 ControlFont smallFont;
 ControlFont labelFont;
@@ -113,8 +116,25 @@ public void controlEvent(ControlEvent theEvent) {
      //println("Create Node at X: " + Float.toString(x) + ", Y: " + Float.toString(y));
      break;
    case("Join Nodes"):
-     //println("Beam Length: " + Integer.toString(Nodes.getLength()));
-     //println("Nodes:\n" + crossSectionShape.getNodes());
+     int count = 0;
+     Node joinStart = null, joinEnd = null;
+     //Only joins the first 2 selected
+     while (count < Nodes.size() && joinEnd == null) {
+       if (Nodes.get(count).joinCheck.getState()) {
+         //Sets join Start first, will only exit loop if both are set
+         if (joinStart == null)
+           joinStart = Nodes.get(count);
+         else
+           joinEnd = Nodes.get(count);
+       }
+       count ++;
+     }
+     if (joinEnd != null) {
+       joinStart.joinCheck.setState(false);
+       joinEnd.joinCheck.setState(false);
+       joinStart.joins.add(count-1);
+     }
+     
      break;
  }
  

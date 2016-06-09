@@ -5,6 +5,7 @@ public class Node
   public Textfield yInput;
   public int id;
   public Toggle joinCheck;
+  public List<Integer> joins = new ArrayList<Integer>();
   
   public Node() {
     //id is the next biggest number
@@ -85,22 +86,33 @@ public class Node
   
   void display() {
     fill(0);
+    Float[] position = getPosition(xInput,yInput);
+    //Set 0,0 to center, minus the y value to bring it up-down
+    ellipse(position[0], position[1], 5, 5);
+    for (int i = 0; i < joins.size(); i++) {
+      // get position of corresponding node
+      Float[] joinPos = getPosition(Nodes.get(joins.get(i)).xInput,Nodes.get(joins.get(i)).yInput);
+      line(position[0], position[1], joinPos[0], joinPos[1]);
+    }
+  }
+  
+  Float[] getPosition(Textfield xInput, Textfield yInput) {
+    Float xOrigin = (float)15*xUnit;
+    Float yOrigin = (float)20*yUnit;
+    Float[] position = {xOrigin,yOrigin};
     
-    Float x = 0.0;
-    Float y = 0.0;
-    
-    //Only parses value if verified
     try {
-      x = Float.parseFloat(xInput.getText());
+      position[0] += Float.parseFloat(xInput.getText());
     }
     catch(NumberFormatException e) {}
     
     try {
-      y = Float.parseFloat(yInput.getText());
+      //Minus y value to bring it up-down, not down-up
+      position[1] -= Float.parseFloat(yInput.getText());
     }
     catch(NumberFormatException e) {}
-    //Set to center
-    ellipse(15*xUnit+x, 20*yUnit-y, 5, 5);
+    
+    return position;
   }
   
   //public void SetPos() {
