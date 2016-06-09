@@ -1,5 +1,5 @@
 public class Node
-{
+{ 
   public Group container;
   public Textfield xInput;
   public Textfield yInput;
@@ -10,11 +10,11 @@ public class Node
   public Node() {
     //id is the next biggest number
     if(Nodes.size() > 0)
-      this.id = Nodes.get(Nodes.size()-1).id+1;
+     this.id = Nodes.get(Nodes.size()-1).id+1;
     else
-      this.id = 1;
+     this.id = 1;
     
-    this.container = cp5.addGroup("Node "+Nodes.size())
+    this.container = cp5.addGroup("Node "+id)
       .setGroup("Right Sidebar")
       .setPosition(0,5*xUnit + (Nodes.size()*3*yUnit))
       .setWidth(10*xUnit)
@@ -66,23 +66,33 @@ public class Node
       //.setInputFilter(ControlP5.FLOAT);
       
     cp5.addButton("Remove "+id)
+      .setId(id)
       .setCaptionLabel("-")
       .setGroup(this.container)
       .setPosition(9*xUnit,0)
-      .setSize(yUnit,yUnit);
-      //.onClick(new CallbackListener() {
-      //  public void controlEvent(CallbackEvent event) {
-      //    Nodes.remove(event.getController().getId());
-      //    for (Node node : Nodes) {
-      //      node.container.setPosition(0,5*xUnit + (Nodes.indexOf(node)*3*yUnit));
-      //    }
-      //    //I've tried every variation of removing the group,
-      //    //they all give the same error, so for now I'm cheating 
-      //    //container.remove();
-      //    container.setVisible(false);
-      //  }
-      //}
-    //);
+      .setSize(yUnit,yUnit)
+      .onClick(new CallbackListener() {
+        public void controlEvent(CallbackEvent event) {
+          boolean removed = false;
+          int i = Nodes.size()-1;
+          while(i >= 0 && !removed) {
+            //println(node.id, event.getController().getId());
+            if(Nodes.get(i).id == event.getController().getId()) {
+              Nodes.remove(i);
+              removed = true;
+              //println("Delete" + node.id);
+            }
+            else {
+              Nodes.get(i).container.setPosition(0,5*xUnit + ((i-1)*3*yUnit));
+            }
+            i--;
+          }
+          //I've tried every variation of removing the group,
+          //they all give the same error, so for now I'm cheating 
+          //container.remove();
+          container.setVisible(false);
+        }
+      });
   }
   
   void display() {
