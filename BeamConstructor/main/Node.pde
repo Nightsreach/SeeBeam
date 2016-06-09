@@ -69,19 +69,20 @@ public class Node
       .setCaptionLabel("-")
       .setGroup(this.container)
       .setPosition(9*xUnit,0)
-      .setSize(yUnit,yUnit)
-      .onClick(new CallbackListener() {
-        public void controlEvent(CallbackEvent event) {
-          println(Nodes.size());
-          Nodes.remove(this);
-          println(Nodes.size());
-          //I've tried every variation of removing the group,
-          //they all give the same error, so for now I'm cheating 
-          //container.remove();
-          container.setVisible(false);
-        }
-      }
-    );
+      .setSize(yUnit,yUnit);
+      //.onClick(new CallbackListener() {
+      //  public void controlEvent(CallbackEvent event) {
+      //    Nodes.remove(event.getController().getId());
+      //    for (Node node : Nodes) {
+      //      node.container.setPosition(0,5*xUnit + (Nodes.indexOf(node)*3*yUnit));
+      //    }
+      //    //I've tried every variation of removing the group,
+      //    //they all give the same error, so for now I'm cheating 
+      //    //container.remove();
+      //    container.setVisible(false);
+      //  }
+      //}
+    //);
   }
   
   void display() {
