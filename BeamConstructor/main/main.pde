@@ -110,8 +110,8 @@ public void controlEvent(ControlEvent theEvent) {
   
  switch (theEvent.getController().getName()) {
    case("Create Mesh"):
-     // Code for file output etc goes here.
-   break;
+       SaveNodesToFile(Nodes, cp5.get(Textfield.class,"Length Field").getText());
+       break;
    case("Create Node"):
      if(Nodes.size() < 9)
        Nodes.add(new Node());
