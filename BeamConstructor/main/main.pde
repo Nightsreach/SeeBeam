@@ -42,6 +42,12 @@ void setup() {
     .setWidth(10*xUnit)
     .hideBar();
   
+  cp5.addButton("Create Mesh")
+    .setGroup("Right Sidebar")
+    .setPosition(xUnit,height-6*yUnit)
+    .setSize(8*xUnit,2*yUnit)
+    .getCaptionLabel().toUpperCase(false);
+  
   cp5.addButton("Create Node")
     .setGroup("Right Sidebar")
     .setPosition(xUnit,height-3*yUnit)
@@ -103,8 +109,11 @@ void draw() {
 public void controlEvent(ControlEvent theEvent) {
   
  switch (theEvent.getController().getName()) {
+   case("Create Mesh"):
+     // Code for file output etc goes here.
+   break;
    case("Create Node"):
-     if(Nodes.size() < 10)
+     if(Nodes.size() < 9)
        Nodes.add(new Node());
      //crossSectionShape.setLength(4500);
      //println("Set Beam Length: 4500");
