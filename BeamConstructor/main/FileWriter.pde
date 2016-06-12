@@ -3,22 +3,20 @@ import java.io.*;
 String directory = "";
 
 
-public void setDirectory(String d){
-  directory =d;
+public void setDirectory(String d) {
+  directory = d;
 }
 
 void fileSelected(File selection) {
-   
-    if (selection == null) {
+ if (selection == null) {
     println("Window was closed or the user hit cancel.");
-  } else {
-    println(selection.getAbsolutePath() + "1");
-    setDirectory(selection.getAbsolutePath());
-  }
+ } else {
+   println(selection.getAbsolutePath() + "1");
+   setDirectory(selection.getAbsolutePath());
+ }
 }
  
-public void SaveNodesToFile(ArrayList<Node> nodes, String BeamLength)
-{
+public void SaveNodesToFile(ArrayList<Node> nodes, String BeamLength) {
   selectInput("Select a file to process:", "fileSelected");
 
   println(nodes);
@@ -48,10 +46,10 @@ public void SaveNodesToFile(ArrayList<Node> nodes, String BeamLength)
         }
         writer.close();
     }
-    catch(FileNotFoundException e){
+    catch(FileNotFoundException e) {
      println("Failed to save file: " + e.getMessage());
     }
-    catch(UnsupportedEncodingException e){
+    catch(UnsupportedEncodingException e) {
      println("Failed to save file: " + e.getMessage());
     }
     finally

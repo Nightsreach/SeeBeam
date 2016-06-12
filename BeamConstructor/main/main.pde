@@ -108,28 +108,18 @@ void draw() {
   image(canvas, 30*xUnit, 0); 
 }
 
-
-
 public void controlEvent(ControlEvent theEvent) {
   
  switch (theEvent.getController().getName()) {
    case("Create Mesh"):
        SaveNodesToFile(Nodes, cp5.get(Textfield.class,"Length Field").getText());
-       
-       
-       break;
+   break;
+   
    case("Create Node"):
      if(Nodes.size() < 9)
        Nodes.add(new Node());
-     //crossSectionShape.setLength(4500);
-     //println("Set Beam Length: 4500");
-     //float x = Float.parseFloat(cp5.get(Textfield.class,"X COORD").getText());
-     //float y = Float.parseFloat(cp5.get(Textfield.class,"Y COORD").getText());
-      
-      
-     //crossSectionShape.addNode(x,y);
-     //println("Create Node at X: " + Float.toString(x) + ", Y: " + Float.toString(y));
-     break;
+   break;
+     
    case("Join Nodes"):
      int count = 0;
      Node joinStart = null, joinEnd = null;
@@ -144,13 +134,14 @@ public void controlEvent(ControlEvent theEvent) {
        }
        count ++;
      }
-     if (joinEnd != null) {
+     //will only create join if both nodes have been set and join does not already exist
+     if (joinEnd != null && !joinStart.joins.contains(count-1)) {
        joinStart.joinCheck.setState(false);
        joinEnd.joinCheck.setState(false);
        joinStart.joins.add(count-1);
+       println(joinStart.ToString());
+       println(Nodes.get(count-1).ToString());
      }
-     
-     break;
+   break;
  }
- 
 }

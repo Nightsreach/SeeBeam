@@ -1,5 +1,4 @@
-public class Node
-{ 
+public class Node { 
   public Group container;
   public Textfield xInput;
   public Textfield yInput;
@@ -10,9 +9,9 @@ public class Node
   public Node() {
     //id is the next biggest number
     if(Nodes.size() > 0)
-     this.id = Nodes.get(Nodes.size()-1).id+1;
+      this.id = Nodes.get(Nodes.size()-1).id+1;
     else
-     this.id = 1;
+      this.id = 1;
     
     this.container = cp5.addGroup("Node "+id)
       .setGroup("Right Sidebar")
@@ -73,17 +72,19 @@ public class Node
       .setSize(yUnit,yUnit)
       .onClick(new CallbackListener() {
         public void controlEvent(CallbackEvent event) {
+          //Search through all nodes, remove all connections to node to be removed
           for(Node node : Nodes) { 
-              for (int j = 0; j < node.joins.size(); j++) {
-                if(Nodes.get(node.joins.get(j)).id == event.getController().getId()){
-                  node.joins.remove(j);
-                }
+            for (int j = 0; j < node.joins.size(); j++) {
+              if(Nodes.get(node.joins.get(j)).id == event.getController().getId()){
+                node.joins.remove(j);
               }
+            }
           }
+          
           boolean removed = false;
           int i = Nodes.size()-1;
+          //Seach through nodes again, but only until node to be removed is found
           while(i >= 0 && !removed) {
-            //println(node.id, event.getController().getId());
             if(Nodes.get(i).id == event.getController().getId()) {
               Nodes.remove(i);
               removed = true;
@@ -94,6 +95,7 @@ public class Node
             }
             i--;
           }
+          
           //I've tried every variation of removing the group,
           //they all give the same error, so for now I'm cheating 
           //container.remove();
@@ -105,7 +107,6 @@ public class Node
   void display() {
     fill(0);
     Float[] position = getPosition(xInput,yInput);
-    //Set 0,0 to center, minus the y value to bring it up-down
     ellipse(position[0], position[1], 5, 5);
     for (int i = 0; i < joins.size(); i++) {
       // get position of corresponding node
@@ -133,12 +134,7 @@ public class Node
     return position;
   }
   
-  //public void SetPos() {
-  //  this.x = Float.parseFloat(xInput.getText());
-  //}
-  
-  //public String ToString() {
-  //  return "X: " + Float.toString(this.x) + ", Y: " + Float.toString(this.y);
-  //}
-  
+  public String ToString() {
+    return "Node " + id + ": X: " + this.xInput.getText() + ", Y: " + this.yInput.getText() + ", Joins: " + this.joins;
+  }
 }
