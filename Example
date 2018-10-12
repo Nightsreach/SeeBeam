@@ -1,0 +1,46 @@
+add_library('proscene')
+add_library('controlP5')
+
+buttonValue = 1
+
+def gui():
+    
+    hint(DISABLE_DEPTH_TEST)
+    
+    currCameraMatrix = PMatrix3D(PGraphics.modelview)
+    cameraZ = ((height/2.0) / tan(PI*60.0/360.0))
+    perspective(PI/3.0, scene.camera().aspectRatio(), cameraZ/10.0, cameraZ*10.0);
+    camera();
+    controlP5.draw()
+
+    hint(ENABLE_DEPTH_TEST)
+
+
+
+def setup():
+    
+    global scene, g3, controlP5, currCameraMatrix, PGraphics
+    
+    size(400,400, OPENGL)
+    scene = Scene(this)
+    controlP5 = ControlP5(this)
+    PGraphics = createGraphics(400,400, P3D)
+
+    controlP5.addButton("button",10,100,60,80,20).setId(1);
+    controlP5.addButton("buttonValue",4,100,90,80,20).setId(2);
+    controlP5.setAutoDraw(False);
+    
+def draw():
+    
+    background(0)
+    fill(255,0,0)
+    box(30)
+    pushMatrix()
+    translate(0,0,20)
+    fill(0,0,255)
+    box(5)
+    popMatrix()  
+    
+    gui()
+    
+    
